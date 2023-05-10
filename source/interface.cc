@@ -47,6 +47,9 @@ Interface::Interface(QWidget* parent)
     setLayout(v_box);
     resize(1920, 1080);
 
+    //侧边导航栏
+
+
     //数据控件传输
     QGroupBox* group_box1 = new QGroupBox("data_send");
     QHBoxLayout* h_box1 = new QHBoxLayout;
@@ -73,6 +76,25 @@ Interface::Interface(QWidget* parent)
     QWidget* xml = scrollarea();
     h_box3->addWidget(xml);
     v_box->addWidget(group_box3);
+
+    //eventFilter
+    QGroupBox* group_box4 = new QGroupBox("eventFilter");
+    QHBoxLayout* h_box4 = new QHBoxLayout;
+    group_box4->setLayout(h_box4);
+    QComboBox* combo = new QComboBox;
+    QStringList strList;
+    strList << "1" << "2" << "3" << "4" << "5" << "6" << "7" << "8";
+    combo->addItems(strList);
+    combo->installEventFilter(this);
+    h_box4->addWidget(combo);
+    v_box->addWidget(group_box4);
+
+    //tablewidget
+    //QGroupBox* group_box3 = new QGroupBox("tablewidget");
+    //QHBoxLayout* h_box3 = new QHBoxLayout;
+    //group_box3->setLayout(h_box3);
+    //QWidget* xml = scrollarea();
+    //h_box3->addWidget(xml);
 }
 
 Interface::~Interface() {}
@@ -198,13 +220,12 @@ QWidget* Interface::genreate_widget()
   xmlFile.open(QIODevice::ReadOnly);
   QFormBuilder builder;
   auto* widget = builder.load(&xmlFile, nullptr);
-
   xmlFile.close();
 
   return widget;
 }
 
-void Interface::tableView()
+QWidget* Interface::tableView()
 {
   table->tablemodel->setHorizontalHeaderLabels(
     {"ID", "Name", "Num", "Pos", "vol"});
@@ -218,10 +239,11 @@ void Interface::tableView()
   }
 
   table->tableview->setModel(table->tablemodel);
-  //vbox->addWidget(table);
   table->tableview->setSelectionBehavior(QAbstractItemView::SelectRows);
   table->tableview->setSelectionMode(QAbstractItemView::SingleSelection);
   connect(table->tableview, &QTableView::clicked, [=]() { tableSelection(); });
+
+  return table;
 }
 
 void Interface::tableSelection()

@@ -8,7 +8,7 @@
  * filename : xml2ui.h
  * author   : tangmq(tangmq@initialsoft.com)
  * create   : 2023-01-10 02:37:14 UTC
- * modified : 2023-05-09 03:18:56 UTC
+ * modified : 2023-05-10 01:48:48 UTC
 \******************************************************************************/
 
 #ifndef __ITERFACE_H__
@@ -25,6 +25,7 @@
 #include <QDateEdit>
 #include <QDebug>
 #include <QFormBuilder>
+#include <QGroupBox>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
@@ -46,8 +47,6 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QWindow>
-#include <QGroupBox>
-
 #include <iostream>
 #include <map>
 
@@ -59,6 +58,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Classes
+/**
+ * 自定义控件
+ */
 class tableDeal : public QWidget
 {
   Q_OBJECT
@@ -88,58 +90,80 @@ class Interface : public QWidget
    */
   void setproperty();
 
-/**
- * 数据控件传输connect
- */
+  /**
+   * 数据控件传输connect
+   */
   void valueTransmit();
 
-/**
- * 数据范围
- */
+  /**
+   * 数据范围
+   */
   void valueRange();
 
-/**
- * map转QMap
- */
+  /**
+   * map转QMap
+   */
   void mapToQmap();
 
-/**
- * list数据快排
- */
+  /**
+   * list数据快排
+   */
   void listSort();
 
-/**
- * 控件切分
- * @param root [description]
- */
+  /**
+   * 控件切分
+   * @param root [description]
+   */
   void widgetsplit(QHBoxLayout* root);
 
-/**
- * 滚动区控件
- * @return [description]
- */
+  /**
+   * 滚动区控件
+   * @return [description]
+   */
   QWidget* scrollarea();
 
-/**
- * xmlToUi
- * @return [description]
- */
+  /**
+   * xmlToUi
+   * @return [description]
+   */
   QWidget* genreate_widget();
 
-  void tableView();
+  /**
+   * 表格控件处理
+   */
+  QWidget* tableView();
 
+  /**
+   * 不选择警告
+   */
   void tableSelection();
 
+  /**
+   * 鼠标中键滑动事件过滤
+   * @param  obj   [description]
+   * @param  event [description]
+   * @return       [description]
+   */
   bool eventFilter(QObject* obj, QEvent* event);
 
  signals:
+  /**
+   * 发送数据信号
+   * @param QString [description]
+   */
   void sendData(QString);
 
  public slots:
+  /**
+   * 按键槽
+   */
   void on_button();
 
  private slots:
-
+  /**
+   * 槽数据处理
+   * @param QString [description]
+   */
   void receiveData(QString);
 
  private:
@@ -149,7 +173,6 @@ class Interface : public QWidget
   QComboBox* combox   = new QComboBox;
   QSpinBox* spin      = new QSpinBox;
   tableDeal* table    = new tableDeal();
-  Ui::Form ui;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
