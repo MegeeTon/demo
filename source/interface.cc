@@ -53,23 +53,17 @@ Interface::Interface(QWidget* parent)
     ui->stackedWidget->addWidget(user_win);
     ui->stackedWidget->addWidget(version_win);
     btnGroup->addButton(ui->home_btn,0);
-    ui->home_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/home.png"));
-    ui->home_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    ui->home_btn->setIcon(QIcon("../../3rd/icon/home.png"));
     btnGroup->addButton(ui->work_btn,1);
-    ui->work_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/work.png"));
-    ui->work_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    ui->work_btn->setIcon(QIcon("../../3rd/icon/work.png"));
     btnGroup->addButton(ui->data_btn,2);
-    ui->data_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/data.png"));
-    ui->data_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    ui->data_btn->setIcon(QIcon("../../3rd/icon/data.png"));
     btnGroup->addButton(ui->setting_btn,3);
-    ui->setting_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/setting.png"));
-    ui->setting_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    ui->setting_btn->setIcon(QIcon("../../3rd/icon/setting.png"));
     btnGroup->addButton(ui->user_btn,4);
-    ui->user_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/user.png"));
-    ui->user_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    ui->user_btn->setIcon(QIcon("../../3rd/icon/user.png"));
     btnGroup->addButton(ui->version_btn,5);
-    ui->version_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/version.png"));
-    ui->version_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    ui->version_btn->setIcon(QIcon("../../3rd/icon/version.png"));
     connect(btnGroup, static_cast<void (QButtonGroup::*)(int)
     >(&QButtonGroup::buttonClicked),
         ui->stackedWidget, &QStackedWidget::setCurrentIndex);

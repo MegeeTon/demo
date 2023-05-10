@@ -82,6 +82,15 @@ class tableDeal : public QWidget
   QStandardItemModel* tablemodel = new QStandardItemModel;
 };
 
+class navigation : public QWidget
+{
+	Q_OBJECT
+
+public:
+	navigation(QWidget* parent = nullptr);
+	~navigation();
+};
+
 class Interface : public QWidget
 {
   Q_OBJECT
@@ -157,6 +166,8 @@ class Interface : public QWidget
   QWidget* user_win = new QWidget;
   QWidget* version_win = new QWidget;
 };
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
