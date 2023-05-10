@@ -90,11 +90,12 @@ Interface::Interface(QWidget* parent)
     v_box->addWidget(group_box4);
 
     //tablewidget
-    //QGroupBox* group_box3 = new QGroupBox("tablewidget");
-    //QHBoxLayout* h_box3 = new QHBoxLayout;
-    //group_box3->setLayout(h_box3);
-    //QWidget* xml = scrollarea();
-    //h_box3->addWidget(xml);
+    QGroupBox* group_box5 = new QGroupBox("tablewidget");
+    QHBoxLayout* h_box5 = new QHBoxLayout;
+    group_box5->setLayout(h_box5);
+    QWidget* tb = tableView();
+    h_box5->addWidget(tb);
+    v_box->addWidget(group_box5);
 }
 
 Interface::~Interface() {}
@@ -241,7 +242,7 @@ QWidget* Interface::tableView()
   table->tableview->setModel(table->tablemodel);
   table->tableview->setSelectionBehavior(QAbstractItemView::SelectRows);
   table->tableview->setSelectionMode(QAbstractItemView::SingleSelection);
-  connect(table->tableview, &QTableView::clicked, [=]() { tableSelection(); });
+  connect(table->buttonDelete, &QPushButton::clicked, [=]() { tableSelection(); });
 
   return table;
 }
