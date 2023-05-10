@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>navigation</class>
+ <widget class="QWidget" name="navigation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>772</width>
+    <height>666</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QFormLayout" name="formLayout">
+   <item row="0" column="0">
+    <widget class="QWidget" name="widget" native="true">
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QWidget{background-color: rgb(227, 227, 227);}
+</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QToolButton" name="home_btn">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">        QToolButton{
+              border-top: 3px outset transparent;
+              border-bottom: 7px outset transparent;
+              border-right: 3px outset transparent;
+              border-left: 20px outset transparent;
+              background-color: rgb(228, 228, 228);
+        }
+        QToolButton:hover{
+              background-color: rgb(205, 205, 205);
+        }
+        QToolButton:pressed,QToolButton:checked{
+              border-left: 18px outset rgb(93, 95, 97);
+              background-color: rgb(0, 170, 0);
+        }</string>
+        </property>
+        <property name="text">
+         <string>主  页</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="work_btn">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">        QToolButton{
+              border-top: 3px outset transparent;
+              border-bottom: 7px outset transparent;
+              border-right: 3px outset transparent;
+              border-left: 20px outset transparent;
+              background-color: rgb(228, 228, 228);
+        }
+        QToolButton:hover{
+              background-color: rgb(205, 205, 205);
+        }
+        QToolButton:pressed,QToolButton:checked{
+              border-left: 18px outset rgb(93, 95, 97);
+              background-color: rgb(246, 246, 246);
+        }</string>
+        </property>
+        <property name="text">
+         <string>工作台</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="data_btn">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">        QToolButton{
+              border-top: 3px outset transparent;
+              border-bottom: 7px outset transparent;
+              border-right: 3px outset transparent;
+              border-left: 20px outset transparent;
+              background-color: rgb(228, 228, 228);
+        }
+        QToolButton:hover{
+              background-color: rgb(205, 205, 205);
+        }
+        QToolButton:pressed,QToolButton:checked{
+              border-left: 18px outset rgb(93, 95, 97);
+              background-color: rgb(246, 246, 246);
+        }</string>
+        </property>
+        <property name="text">
+         <string>数  据</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="setting_btn">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">        QToolButton{
+              border-top: 3px outset transparent;
+              border-bottom: 7px outset transparent;
+              border-right: 3px outset transparent;
+              border-left: 20px outset transparent;
+              background-color: rgb(228, 228, 228);
+        }
+        QToolButton:hover{
+              background-color: rgb(205, 205, 205);
+        }
+        QToolButton:pressed,QToolButton:checked{
+              border-left: 18px outset rgb(93, 95, 97);
+              background-color: rgb(246, 246, 246);
+        }</string>
+        </property>
+        <property name="text">
+         <string>设  置</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="user_btn">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">        QToolButton{
+              border-top: 3px outset transparent;
+              border-bottom: 7px outset transparent;
+              border-right: 3px outset transparent;
+              border-left: 20px outset transparent;
+              background-color: rgb(228, 228, 228);
+        }
+        QToolButton:hover{
+              background-color: rgb(205, 205, 205);
+        }
+        QToolButton:pressed,QToolButton:checked{
+              border-left: 18px outset rgb(93, 95, 97);
+              background-color: rgb(246, 246, 246);
+        }</string>
+        </property>
+        <property name="text">
+         <string>用  户</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QToolButton" name="version_btn">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">        QToolButton{
+              border-top: 3px outset transparent;
+              border-bottom: 7px outset transparent;
+              border-right: 3px outset transparent;
+              border-left: 20px outset transparent;
+              background-color: rgb(228, 228, 228);
+        }
+        QToolButton:hover{
+              background-color: rgb(205, 205, 205);
+        }
+        QToolButton:pressed,QToolButton:checked{
+              border-left: 18px outset rgb(93, 95, 97);
+              background-color: rgb(246, 246, 246);
+        }</string>
+        </property>
+        <property name="text">
+         <string>版  本</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QStackedWidget" name="stackedWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -47,8 +47,11 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QWindow>
+#include <QButtonGroup>
 #include <iostream>
 #include <map>
+
+#include "ui_navigation.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Typedefs & Constants
@@ -59,6 +62,11 @@
 /**
  * 自定义控件
  */
+
+namespace Ui {
+	class navigation;
+}
+
 class tableDeal : public QWidget
 {
   Q_OBJECT
@@ -86,12 +94,7 @@ class Interface : public QWidget
   /**
    * 通过preperty设定控件属性
    */
-  void setproperty();
-
-  /**
-   * 数据控件传输connect
-   */
-  void valueTransmit();
+  void setproperty(QLineEdit* edit1);
 
   /**
    * 数据范围
@@ -129,12 +132,12 @@ class Interface : public QWidget
   /**
    * 表格控件处理
    */
-  QWidget* tableView();
+  QWidget* tableView(tableDeal* table);
 
   /**
    * 不选择警告
    */
-  void tableSelection();
+  void tableSelection(tableDeal* table);
 
   /**
    * 鼠标中键滑动事件过滤
@@ -144,33 +147,15 @@ class Interface : public QWidget
    */
   bool eventFilter(QObject* obj, QEvent* event);
 
- signals:
-  /**
-   * 发送数据信号
-   * @param QString [description]
-   */
-  void sendData(QString);
-
- public slots:
-  /**
-   * 按键槽
-   */
-  void on_button();
-
- private slots:
-  /**
-   * 槽数据处理
-   * @param QString [description]
-   */
-  void receiveData(QString);
-
  private:
-  QLineEdit* edit     = new QLineEdit;
-  QLineEdit* edit1    = new QLineEdit;
-  QPushButton* button = new QPushButton("send");
-  QComboBox* combox   = new QComboBox;
-  QSpinBox* spin      = new QSpinBox;
-  tableDeal* table    = new tableDeal();
+  Ui::navigation* ui = nullptr;
+  QButtonGroup* btnGroup = new QButtonGroup;
+  QWidget* home_win = new QWidget;
+  QWidget* work_win = new QWidget;
+  QWidget* data_win = new QWidget;
+  QWidget* setting_win = new QWidget;
+  QWidget* user_win = new QWidget;
+  QWidget* version_win = new QWidget;
 };
 
 ////////////////////////////////////////////////////////////////////////////////

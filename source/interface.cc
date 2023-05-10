@@ -7,7 +7,7 @@
  * filename : xml2ui.cc
  * author   : tangmq(tangmq@initialsoft.com)
  * create   : 2023-01-10 02:37:14 UTC
- * modified : 2023-05-08 05:39:49 UTC
+ * modified : 2023-05-10 08:39:31 UTC
 \******************************************************************************/
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -41,42 +41,77 @@ bool Interface::eventFilter(QObject* obj, QEvent* event)
 
 Interface::Interface(QWidget* parent)
   : QWidget(parent)
+    ,ui(new Ui::navigation)
 {
-    //mainwindow
-    QVBoxLayout* v_box = new  QVBoxLayout;
-    setLayout(v_box);
-    resize(1920, 1080);
-
     //侧边导航栏
+    ui->setupUi(this);
+    resize(2000, 1200);
+    ui->stackedWidget->addWidget(home_win);
+    ui->stackedWidget->addWidget(work_win);
+    ui->stackedWidget->addWidget(data_win);
+    ui->stackedWidget->addWidget(setting_win);
+    ui->stackedWidget->addWidget(user_win);
+    ui->stackedWidget->addWidget(version_win);
+    btnGroup->addButton(ui->home_btn,0);
+    ui->home_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/home.png"));
+    ui->home_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    btnGroup->addButton(ui->work_btn,1);
+    ui->work_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/work.png"));
+    ui->work_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    btnGroup->addButton(ui->data_btn,2);
+    ui->data_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/data.png"));
+    ui->data_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    btnGroup->addButton(ui->setting_btn,3);
+    ui->setting_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/setting.png"));
+    ui->setting_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    btnGroup->addButton(ui->user_btn,4);
+    ui->user_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/user.png"));
+    ui->user_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    btnGroup->addButton(ui->version_btn,5);
+    ui->version_btn->setIcon(QIcon("D:/Data/Code/test/3rd/icon/version.png"));
+    ui->version_btn->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    connect(btnGroup, static_cast<void (QButtonGroup::*)(int)
+    >(&QButtonGroup::buttonClicked),
+        ui->stackedWidget, &QStackedWidget::setCurrentIndex);
+    //设置默认页
+    btnGroup->button(0)->setChecked(true);
+    ui->stackedWidget->setCurrentIndex(0);
 
-
+    //home_win
+    QVBoxLayout* home_lay = new  QVBoxLayout;
+    home_win->setLayout(home_lay);
     //数据控件传输
     QGroupBox* group_box1 = new QGroupBox("data_send");
     QHBoxLayout* h_box1 = new QHBoxLayout;
     group_box1->setLayout(h_box1);
+    QLineEdit* edit = new QLineEdit;
+    QLineEdit* edit1 = new QLineEdit;
+    QPushButton* button = new QPushButton("send");
     h_box1->addWidget(edit);
     h_box1->addWidget(edit1);
     h_box1->addWidget(button);
     edit->setText("sadadas");
-    setproperty();
-    valueTransmit();
-    v_box->addWidget(group_box1);
-
+    setproperty(edit1);
+    connect(button, &QPushButton::clicked, [=]()
+        { edit1->setText(edit->text()); });
+    home_lay->addWidget(group_box1);
     //控件切分
     QGroupBox* group_box2 = new QGroupBox("widget_split");
     QHBoxLayout* h_box2 = new QHBoxLayout;
     group_box2->setLayout(h_box2);
     widgetsplit(h_box2);
-    v_box->addWidget(group_box2);
-
+    home_lay->addWidget(group_box2);
     //xmlToUi放在scrollarea
     QGroupBox* group_box3 = new QGroupBox("xmlToUi");
     QHBoxLayout* h_box3 = new QHBoxLayout;
     group_box3->setLayout(h_box3);
     QWidget* xml = scrollarea();
     h_box3->addWidget(xml);
-    v_box->addWidget(group_box3);
+    home_lay->addWidget(group_box3);
 
+    //work_win
+    QVBoxLayout* work_lay = new  QVBoxLayout;
+    work_win->setLayout(work_lay);
     //eventFilter
     QGroupBox* group_box4 = new QGroupBox("eventFilter");
     QHBoxLayout* h_box4 = new QHBoxLayout;
@@ -87,15 +122,15 @@ Interface::Interface(QWidget* parent)
     combo->addItems(strList);
     combo->installEventFilter(this);
     h_box4->addWidget(combo);
-    v_box->addWidget(group_box4);
-
+    work_lay->addWidget(group_box4);
     //tablewidget
     QGroupBox* group_box5 = new QGroupBox("tablewidget");
     QHBoxLayout* h_box5 = new QHBoxLayout;
     group_box5->setLayout(h_box5);
-    QWidget* tb = tableView();
+    tableDeal* table = new tableDeal();
+    QWidget* tb = tableView(table);
     h_box5->addWidget(tb);
-    v_box->addWidget(group_box5);
+    work_lay->addWidget(group_box5);
 }
 
 Interface::~Interface() {}
@@ -103,28 +138,10 @@ Interface::~Interface() {}
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
 //
-
-void Interface::on_button()
-{
-  emit sendData(edit->text());
-}
-
-void Interface::receiveData(QString data)
-{
-  edit1->setText(data); 
-}
-
-void Interface::setproperty()
+void Interface::setproperty(QLineEdit* edit1)
 {
   edit1->setProperty("readOnly", true);
   QVariant tmp = edit1->property("readOnly");
-}
-
-void Interface::valueTransmit()
-{
-  /*connect(button,SIGNAL(clicked()),SLOT(on_button()));*/
-  connect(button, &QPushButton::clicked, this, &Interface::on_button);
-  connect(this, &Interface::sendData, this, &Interface::receiveData);
 }
 
 void Interface::valueRange()
@@ -226,7 +243,7 @@ QWidget* Interface::genreate_widget()
   return widget;
 }
 
-QWidget* Interface::tableView()
+QWidget* Interface::tableView(tableDeal* table)
 {
   table->tablemodel->setHorizontalHeaderLabels(
     {"ID", "Name", "Num", "Pos", "vol"});
@@ -242,12 +259,12 @@ QWidget* Interface::tableView()
   table->tableview->setModel(table->tablemodel);
   table->tableview->setSelectionBehavior(QAbstractItemView::SelectRows);
   table->tableview->setSelectionMode(QAbstractItemView::SingleSelection);
-  connect(table->buttonDelete, &QPushButton::clicked, [=]() { tableSelection(); });
+  connect(table->buttonDelete, &QPushButton::clicked, [=]() { tableSelection(table); });
 
   return table;
 }
 
-void Interface::tableSelection()
+void Interface::tableSelection(tableDeal* table)
 {
   auto record = table->tableview->selectionModel()->selectedIndexes();
   if (record.count() <= 0) {
