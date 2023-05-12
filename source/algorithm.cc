@@ -29,7 +29,7 @@
 
 Algorithm::Algorithm()
 {
-    linkQueue();
+    binarySearch();
 }
 
 Algorithm::~Algorithm() {}
@@ -375,6 +375,31 @@ double Algorithm::coordToDouble(string position)
   return rslt;
 }
 
+void Algorithm::binarySearch()
+{
+    //data
+    int _a[10] = {0,1,16,24,35,44,56,72,88,91};
+    int _size = 10;
+    int _key = 88;
 
+    //search
+    int _low = 1;
+    int _high = _size;
+    int _mid;
+    while (_low <= _high)
+    {
+        _mid = (_high + _low) / 2;
+        if (_key < _a[_mid])
+            _high = _mid - 1;
+        else if (_key > _a[_mid])
+            _low = _mid + 1;
+        else
+        {
+            cout << _mid << endl;
+            return;
+        }
+    }
+    cout << "无";
+}
 
 ////////////////////////////////// EOF /////////////////////////////////////////

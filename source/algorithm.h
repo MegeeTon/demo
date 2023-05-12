@@ -7,7 +7,7 @@
  * filename : algorithm.h
  * author   : tangmq(megee@initialsoft.com)
  * create   : 2023-02-20 06:15:49 UTC
- * modified : 2023-05-09 02:00:41 UTC
+ * modified : 2023-05-11 09:15:27 UTC
 \******************************************************************************/
 
 #ifndef __ALGORITHM_H__
@@ -107,6 +107,11 @@ class Algorithm
    * @return          [description]
    */
   double coordToDouble(string position);
+
+  /**
+   * 二分查找
+   */
+  void binarySearch();
 };
 
 ////////////////////////////////////////////////////////////////////////////////
