@@ -37,6 +37,16 @@ class Algorithm
   Algorithm();
   ~Algorithm();
 
+public:
+	//二叉树
+	typedef struct _bitnode
+	{
+		int _data;
+		struct _bitnode* _lchild, * _rchild;
+	}_bitnode ,*_bittree;
+
+	_bittree* _tree = new _bittree;
+
  public:
   static const int max_size = 100;
 
@@ -69,6 +79,18 @@ class Algorithm
    * 链式队列
    */
   void linkQueue();
+
+  //创建二叉树
+  void createBitTree(_bittree* t);
+
+  //前序遍历
+  void preOrderTraverse(_bittree* t);
+
+  //中序遍历
+  void inOrderTraverse(_bittree* t);
+  
+  //后序遍历
+  void postOrderTraverse(_bittree* t);
 
   /**
    * 斐波那契数列迭代

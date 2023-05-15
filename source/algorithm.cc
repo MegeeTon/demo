@@ -29,7 +29,11 @@
 
 Algorithm::Algorithm()
 {
-    binarySearch();
+    createBitTree(_tree);
+    preOrderTraverse(_tree);
+    inOrderTraverse(_tree);
+    postOrderTraverse(_tree);
+
 }
 
 Algorithm::~Algorithm() {}
@@ -298,6 +302,55 @@ void Algorithm::linkQueue()
   delete(tmp);
 }
 
+void Algorithm::createBitTree(_bittree *t)
+{
+    static int tmp_data = 1;
+    if (tmp_data > 10)
+        return;
+    if (tmp_data % 3 == 0||tmp_data ==4)
+    {
+        *t = NULL;
+        tmp_data++;
+    }
+    else
+    {
+        *t = new _bitnode;
+        if (!*t)
+            return;
+        (*t)->_data = tmp_data++;
+        (*t)->_lchild = (*t)->_rchild = NULL;
+        createBitTree(&(*t)->_lchild);
+        createBitTree(&(*t)->_rchild);
+    }
+}
+
+void Algorithm::preOrderTraverse(_bittree *t)
+{
+    if (*t==NULL)
+        return;
+    cout << (*t)->_data << "  ";
+    preOrderTraverse(&(*t)->_lchild);
+    preOrderTraverse(&(*t)->_rchild);
+}
+
+void Algorithm::inOrderTraverse(_bittree *t)
+{
+    if (*t == NULL)
+        return;
+    inOrderTraverse(&(*t)->_lchild);
+    cout << (*t)->_data << "  ";
+    inOrderTraverse(&(*t)->_rchild);
+}
+
+void Algorithm::postOrderTraverse(_bittree *t)
+{
+    if (*t == nullptr)
+        return;
+    postOrderTraverse(&(*t)->_lchild);
+    postOrderTraverse(&(*t)->_rchild);
+    cout << (*t)->_data << "  ";
+}
+
 void Algorithm::fibonacci_iter()
 {
     int a[41];
@@ -388,7 +441,10 @@ void Algorithm::binarySearch()
     int _mid;
     while (_low <= _high)
     {
+        //二分法，顺序数列
         _mid = (_high + _low) / 2;
+        //插值法，适用于分部均匀的数列
+        //_mid = (_high - _low) * (_key - _a[_low]) / (_a[_high] - _a[_low]);
         if (_key < _a[_mid])
             _high = _mid - 1;
         else if (_key > _a[_mid])
