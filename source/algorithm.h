@@ -92,6 +92,21 @@ public:
   //后序遍历
   void postOrderTraverse(_bittree* t);
 
+  //二叉排序树查找
+  bool searchBST(_bittree t, int key, _bittree f, _bittree* p);
+
+  //二叉排序树插入
+  bool insertBST(_bittree* t,int key);
+  
+  //二叉排序树删除
+  bool deleteBST(_bittree *t,int key);
+
+  //二叉排序树删除节点
+  bool _delete(_bittree* p);
+
+  //创建二叉排序树
+  void Algorithm::createBST();
+
   /**
    * 斐波那契数列迭代
    */

@@ -29,11 +29,11 @@
 
 Algorithm::Algorithm()
 {
-    createBitTree(_tree);
+    *_tree = NULL;
+    createBST();
     preOrderTraverse(_tree);
     inOrderTraverse(_tree);
     postOrderTraverse(_tree);
-
 }
 
 Algorithm::~Algorithm() {}
@@ -349,6 +349,107 @@ void Algorithm::postOrderTraverse(_bittree *t)
     postOrderTraverse(&(*t)->_lchild);
     postOrderTraverse(&(*t)->_rchild);
     cout << (*t)->_data << "  ";
+}
+
+bool Algorithm::searchBST(_bittree t, int key, _bittree f, _bittree* p)
+{
+    if (!t)
+    {
+        *p = f;
+        return false;
+    }
+    else if(key == t->_data)
+    {
+        *p = t;
+        return true;
+    }
+    else if (key < t->_data)
+    {
+        return searchBST(t->_lchild, key, t, p);
+    }
+    else
+    {
+        return searchBST(t->_rchild, key, t, p);
+    }
+}
+
+bool Algorithm::insertBST(_bittree* t, int key)
+{
+    _bittree p = new _bitnode;
+    _bittree s = new _bitnode;
+    if (!searchBST(*t, key, NULL, &p))
+    {
+        s = new _bitnode;
+        s->_data = key;
+        s->_lchild = s->_rchild = NULL;
+        if (!p)
+            *t = s;
+        else if (key < p->_data)
+            p->_lchild = s;
+        else
+            p->_rchild = s;
+        return true;
+    }
+    else
+        return false;
+}
+
+void Algorithm::createBST()
+{
+    int a[10] = { 62,88,58,47,35,28,18,99,37,9 };
+    for (int i = 0; i < 10; i++)
+        insertBST(_tree, a[i]);
+}
+
+bool Algorithm::_delete(_bittree* p)
+{
+    _bittree q = new _bitnode;
+    _bittree s = new _bitnode;
+
+    if ((*p)->_rchild == NULL)
+    {
+        q = *p;
+        *p = (*p)->_lchild;
+        delete q;
+    }
+    else if ((*p)->_lchild == NULL)
+    {
+        q = *p;
+        *p = (*p)->_rchild;
+        delete q;
+    }
+    else
+    {
+        q = *p;
+        s = (*p)->_lchild;
+        while (s->_rchild)
+        {
+            q = s;
+            s = s->_rchild;
+        }
+        (*p)->_data = s->_data;
+        if (q != *p)
+            q->_rchild = s->_lchild;
+        else
+            q->_lchild = s->_lchild;
+        delete s;
+    }
+    return true;
+}
+
+bool Algorithm::deleteBST(_bittree* t, int key)
+{
+    if (!*t)
+        return false;
+    else
+    {
+        if (key == (*t)->_data)
+            return _delete(t);
+        else if (key < (*t)->_data)
+            return deleteBST(&(*t)->_lchild, key);
+        else
+            return deleteBST(&(*t)->_rchild, key);
+    }
 }
 
 void Algorithm::fibonacci_iter()
