@@ -47,6 +47,19 @@ public:
 
 	_bittree* _tree = new _bittree;
 
+public:
+	//hash表
+#define HASHSIZE 12
+#define NULLKEY -1
+	 
+	typedef struct
+	{
+		int* _elem;
+		int _count;
+	}_hashtable;
+
+	_hashtable* _hash = new _hashtable;
+
  public:
   static const int max_size = 100;
 
@@ -106,6 +119,18 @@ public:
 
   //创建二叉排序树
   void Algorithm::createBST();
+
+  //初始化hash表
+  bool initHashTable(_hashtable* _hash);
+
+  //hash函数
+  int hash(int key);
+
+  //hash表插值
+  void insertHash(_hashtable* _hash, int key);
+
+  //hsah表查找
+  bool searchHash(_hashtable* _hash, int key, int* addr);
 
   /**
    * 斐波那契数列迭代

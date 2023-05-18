@@ -452,6 +452,42 @@ bool Algorithm::deleteBST(_bittree* t, int key)
     }
 }
 
+bool Algorithm::initHashTable(_hashtable* _hash)
+{
+    _hash->_count = HASHSIZE;
+    _hash->_elem = new int[HASHSIZE];
+    for (int i = 0; i < HASHSIZE; i++)
+    {
+        _hash->_elem[i] = NULLKEY;
+    }
+    return true;
+}
+
+int Algorithm::hash(int key)
+{
+    return key % HASHSIZE;
+}
+
+void Algorithm::insertHash(_hashtable* _hash, int key)
+{
+    int addr = hash(key);
+    while (_hash->_elem[addr] != NULLKEY)
+        addr = (addr + 1) % HASHSIZE;
+    _hash->_elem[addr] = key;
+}
+
+bool Algorithm::searchHash(_hashtable* _hash, int key, int* addr)
+{
+    *addr = hash(key);
+    while(_hash->_elem[*addr]!=key)
+    {
+        *addr = (*addr + 1) % HASHSIZE;
+        if (*addr = (*addr + 1) == NULLKEY || *addr == hash(key))
+            return false;
+    }
+    return true;
+}
+
 void Algorithm::fibonacci_iter()
 {
     int a[41];
