@@ -728,7 +728,7 @@ void Algorithm::quickSort()
 void Algorithm::QSort(int* a, int low, int high)
 {
     int pivot;
-    if (low < high)
+    if (low < high)//优化，当数组较小是可以采用插值排序，加以判断
     {
         pivot = partition(a, low, high);
         QSort(a, low, pivot - 1);
@@ -738,7 +738,31 @@ void Algorithm::QSort(int* a, int low, int high)
 
 int Algorithm::partition(int* a, int low, int high)
 {
-    int pivot_key = a[low];
+    int pivot_key;
+
+    /***************优化pivot_key选择*******************/
+    //int m = low + (high - low) / 2;
+    //if (a[low] > a[high])
+    //{
+    //    int tmp1 = a[low];
+    //    a[low] = a[high];
+    //    a[high] = tmp1;
+    //}
+    //if (a[m] > a[high])
+    //{
+    //    int tmp1 = a[m];
+    //    a[m] = a[high];
+    //    a[high] = tmp1;
+    //}
+    //if (a[low] < a[m])
+    //{
+    //    int tmp1 = a[low];
+    //    a[low] = a[m];
+    //    a[m] = tmp1;
+    //}
+
+    pivot_key  = a[low];
+    //a[0] = pivot_key;//插值优化
     while (low < high)
     {
         while (low < high && a[high] >= pivot_key)
@@ -746,6 +770,8 @@ int Algorithm::partition(int* a, int low, int high)
         int tmp1 = a[low];
         a[low] = a[high];
         a[high] = tmp1;
+        /*******************优化这里可以采用插值法替换，而不是交换**********************/
+        //备份a[0]后 a[low] = a[high]; a[low] = a[0];
         while (low < high && a[low] <= pivot_key)
             low++;
         int tmp2 = a[low];
