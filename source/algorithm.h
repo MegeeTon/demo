@@ -180,6 +180,18 @@ public:
   //插入排序
   void insertSort();
 
+  //希尔排序-插排优化
+  void shellSort();
+
+  //快排
+  void quickSort();
+
+  //快排递归
+  void QSort(int* a, int low,int high);
+
+  //快排分割
+  int partition(int* a, int low, int high);
+
 /*****************************功能***********************************/
   /**
    * c++字符串切割
@@ -207,7 +219,8 @@ public:
    */
   double coordToDouble(string position);
 
-
+  //十进制转十六进制
+  void detToHex(int dec);
 };
 
 ////////////////////////////////////////////////////////////////////////////////

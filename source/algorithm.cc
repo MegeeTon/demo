@@ -30,10 +30,8 @@
 Algorithm::Algorithm()
 {
     *_tree = NULL;
-    
 
-    selectSort();
-
+    quickSort();
 }
 
 Algorithm::~Algorithm() {}
@@ -663,9 +661,99 @@ void Algorithm::selectSort()
 
 void Algorithm::insertSort()
 {
+    int a[11] = { 0,9,1,5,8,3,7,4,6,2 };//0为新增哨兵
+    int length = 10;
+    int i, j;
 
+    for (i = 2; i < length; i++)
+    {
+        if (a[i - 1] > a[i])
+        {
+            a[0] = a[i];
+            for (j = i - 1; a[j] > a[0]; j--)
+                a[j + 1] = a[j];
+            a[j + 1] = a[0];
+        }
+    }
+
+    for (int i = 1; i < length; i++)
+    {
+        cout << a[i] << endl;
+    }
 }
 
+
+void Algorithm::shellSort()
+{
+    int a[11] = { 0,9,1,5,8,3,7,4,6,2 };//0为新增哨兵
+    int length = 10;
+    int i, j;
+
+    int increment = length;//增量
+
+    while (increment > 1)
+    {
+        increment = increment / 3 + 1;
+        for (i = increment + 1; i < length; i++)
+        {
+            if (a[i] < a[i - increment])
+            {
+                a[0] = a[i];
+                for (j = i - increment; j > 0 && a[0] < a[j]; j -= increment)
+                    a[j + increment] = a[j];
+                a[j + increment] = a[0];
+            }
+        }
+    }
+
+        for (int i = 1; i < length; i++)
+    {
+        cout << a[i] << endl;
+    }
+}
+
+void Algorithm::quickSort()
+{
+    int a[10] = { 9,1,5,8,3,7,4,6,2 };
+    int length = 9;
+
+    QSort(a, 0, length-1);
+
+    for (int i = 0; i < length; i++)
+    {
+        cout << a[i] << endl;
+    }
+}
+
+void Algorithm::QSort(int* a, int low, int high)
+{
+    int pivot;
+    if (low < high)
+    {
+        pivot = partition(a, low, high);
+        QSort(a, low, pivot - 1);
+        QSort(a, pivot + 1, high);
+    }
+}
+
+int Algorithm::partition(int* a, int low, int high)
+{
+    int pivot_key = a[low];
+    while (low < high)
+    {
+        while (low < high && a[high] >= pivot_key)
+            high --;
+        int tmp1 = a[low];
+        a[low] = a[high];
+        a[high] = tmp1;
+        while (low < high && a[low] <= pivot_key)
+            low++;
+        int tmp2 = a[low];
+        a[low] = a[high];
+        a[high] = tmp2;
+    }
+    return low;
+}
 
 /*****************************功能***********************************/
 
@@ -725,6 +813,31 @@ double Algorithm::coordToDouble(string position)
   return rslt;
 }
 
+void Algorithm::detToHex(int dec)
+{
+    int j = 0;
+    int tmp = dec;
+    string hex;
+    while (dec)
+    {
+        dec /= 16;
+        j++;
+    }
+    for (int i = 0; i < j; i++)
+    {
+        int rem = tmp % 16;
+        tmp /= 16;
 
+        if (rem >= 0 && rem <= 9)
+        {
+            hex.insert(0,1, rem + '0');
+        }
+        else if (rem >= 10 && rem <= 15)
+        {
+            hex.insert(0,1,rem + 'A' - 10);
+        }
+    }
+    cout << hex << endl;
+}
 
 ////////////////////////////////// EOF /////////////////////////////////////////
