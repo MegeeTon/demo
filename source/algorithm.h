@@ -20,6 +20,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <ctime>
 
 using namespace std;
 
@@ -63,6 +64,12 @@ public:
  public:
   static const int max_size = 100;
 
+  clock_t start, end;
+  //start = clock();
+  //end = clock();
+  //cout << "time: " << (double)(end - start)/ CLOCKS_PER_SEC << endl;
+
+/**************************数据结构*************************************/
   /**
    * 顺序表
    */
@@ -105,9 +112,6 @@ public:
   //后序遍历
   void postOrderTraverse(_bittree* t);
 
-  //二叉排序树查找
-  bool searchBST(_bittree t, int key, _bittree f, _bittree* p);
-
   //二叉排序树插入
   bool insertBST(_bittree* t,int key);
   
@@ -118,7 +122,7 @@ public:
   bool _delete(_bittree* p);
 
   //创建二叉排序树
-  void Algorithm::createBST();
+  void createBST();
 
   //初始化hash表
   bool initHashTable(_hashtable* _hash);
@@ -129,9 +133,9 @@ public:
   //hash表插值
   void insertHash(_hashtable* _hash, int key);
 
-  //hsah表查找
-  bool searchHash(_hashtable* _hash, int key, int* addr);
 
+
+  /**************************算法************************************/
   /**
    * 斐波那契数列迭代
    */
@@ -144,6 +148,39 @@ public:
    */
   int fibonacci_recur(int count);
 
+  //哨兵查找
+  int sequebtialSearch(int* a, int n, int key);
+
+  /**
+	* 二分查找
+	*/
+  void binarySearch();
+
+  //二叉排序树查找
+  bool searchBST(_bittree t, int key, _bittree f, _bittree* p);
+
+  //hsah表查找
+  bool searchHash(_hashtable* _hash, int key, int* addr);
+
+  //辗转相除法-求最大公约数
+  int successiveDivision(int a, int b);
+
+  //判断素数
+  bool primeNum(int a);
+
+  //鸡兔同笼
+  void jitutonglong(int head, int leg);
+
+  //冒泡排序
+  void bubbleSort();
+
+  //选择排序
+  void selectSort();
+
+  //插入排序
+  void insertSort();
+
+/*****************************功能***********************************/
   /**
    * c++字符串切割
    */
@@ -170,10 +207,7 @@ public:
    */
   double coordToDouble(string position);
 
-  /**
-   * 二分查找
-   */
-  void binarySearch();
+
 };
 
 ////////////////////////////////////////////////////////////////////////////////

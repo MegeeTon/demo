@@ -30,10 +30,10 @@
 Algorithm::Algorithm()
 {
     *_tree = NULL;
-    createBST();
-    preOrderTraverse(_tree);
-    inOrderTraverse(_tree);
-    postOrderTraverse(_tree);
+    
+
+    selectSort();
+
 }
 
 Algorithm::~Algorithm() {}
@@ -41,6 +41,9 @@ Algorithm::~Algorithm() {}
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
 //
+
+
+/**************************数据结构*************************************/
 
 void Algorithm::sqList()
 {
@@ -488,6 +491,8 @@ bool Algorithm::searchHash(_hashtable* _hash, int key, int* addr)
     return true;
 }
 
+/**************************算法************************************/
+
 void Algorithm::fibonacci_iter()
 {
     int a[41];
@@ -508,6 +513,161 @@ int Algorithm::fibonacci_recur(int count)
         return fibonacci_recur(count - 1) + fibonacci_recur(count - 2);
     }
 }
+
+int Algorithm::sequebtialSearch(int* a, int n, int key)
+{
+    a[0] = key;
+    int i = n;
+    while (a[i] != key)
+    {
+        i--;
+    }
+    return i;
+}
+
+void Algorithm::binarySearch()
+{
+    //data
+    int _a[10] = { 0,1,16,24,35,44,56,72,88,91 };
+    int _size = 10;
+    int _key = 88;
+
+    //search
+    int _low = 1;
+    int _high = _size;
+    int _mid;
+    while (_low <= _high)
+    {
+        //二分法，顺序数列
+        _mid = (_high + _low) / 2;
+        //插值法，适用于分部均匀的数列
+        //_mid = (_high - _low) * (_key - _a[_low]) / (_a[_high] - _a[_low]);
+        if (_key < _a[_mid])
+            _high = _mid - 1;
+        else if (_key > _a[_mid])
+            _low = _mid + 1;
+        else
+        {
+            cout << _mid << endl;
+            return;
+        }
+    }
+    cout << "无";
+}
+
+int Algorithm::successiveDivision(int a, int b)
+{
+    while (a != b)
+    {
+        if (a > b)
+            a = a - b;
+        else
+            b = b - a;
+    }
+    return a;
+}
+
+bool Algorithm::primeNum(int a)
+{
+    int i = 2;
+    for (; i < a ; i++)
+    {
+        if (a % i == 0)
+            return false;
+    }
+    if (i == a)
+        return true;
+}
+
+void Algorithm::jitutonglong(int head, int leg)
+{
+    if (leg % 2 != 0)
+        cout << "cuowu" << endl;
+    else {
+        int tuzi = leg / 2 - head;
+        int ji = 2 * head - leg / 2;
+        if (tuzi < 0 || ji < 0)
+            cout << "cuowu" << endl;
+        else
+            cout << ji << "  " << tuzi << endl;
+    }
+
+    /**************************************/
+    int i = 0;
+    for (; i <= head; i++)
+    {
+        if (2 * i + 4 * (head - i) == leg)
+        {
+            cout << i << "  " << head - i << endl;
+            break;
+        }
+    }
+    if (i > head)
+        cout << "cuowu" << endl;
+}
+
+void Algorithm::bubbleSort()
+{
+    int a[10] = { 9,1,5,8,3,7,4,6,2 };
+    int length = 9;
+    bool flag = true;//优化
+
+    for (int i = 0; i < length&&flag; i++)
+    {
+        flag = false;//优化
+        for (int j = length - 1; j > i; j--)
+        {
+            if (a[j - 1] > a[j])
+            {
+                int tmp = a[j - 1];
+                a[j - 1] = a[j];
+                a[j] = tmp;
+                flag = true;//优化
+            }
+        }
+    }
+    
+    for (int i = 0; i < length; i++)
+    {
+        cout << a[i] << endl;
+    }
+    
+}
+
+void Algorithm::selectSort()
+{
+    int a[10] = { 9,1,5,8,3,7,4,6,2 };
+    int length = 9;
+    int min = 0;
+
+    for (int i = 0; i < length; i++)
+    {
+        min = i;
+        for (int j = i + 1; j < length; j++)
+        {
+            if (a[min] > a[j])
+                min = j;
+        }
+        if (min != i)
+        {
+            int tmp = a[i];
+            a[i] = a[min];
+            a[min] = tmp;
+        }
+    }
+    for (int i = 0; i < length; i++)
+    {
+        cout << a[i] << endl;
+    }
+}
+
+void Algorithm::insertSort()
+{
+
+}
+
+
+/*****************************功能***********************************/
 
 vector<string> Algorithm::stringSplit(string str, const string& split)
 {
@@ -565,34 +725,6 @@ double Algorithm::coordToDouble(string position)
   return rslt;
 }
 
-void Algorithm::binarySearch()
-{
-    //data
-    int _a[10] = {0,1,16,24,35,44,56,72,88,91};
-    int _size = 10;
-    int _key = 88;
 
-    //search
-    int _low = 1;
-    int _high = _size;
-    int _mid;
-    while (_low <= _high)
-    {
-        //二分法，顺序数列
-        _mid = (_high + _low) / 2;
-        //插值法，适用于分部均匀的数列
-        //_mid = (_high - _low) * (_key - _a[_low]) / (_a[_high] - _a[_low]);
-        if (_key < _a[_mid])
-            _high = _mid - 1;
-        else if (_key > _a[_mid])
-            _low = _mid + 1;
-        else
-        {
-            cout << _mid << endl;
-            return;
-        }
-    }
-    cout << "无";
-}
 
 ////////////////////////////////// EOF /////////////////////////////////////////
