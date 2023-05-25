@@ -1,24 +1,19 @@
 /*******************************************************************************
- * Copyright (c) 2022, Initialsoft, Inc.
+ * Copyright (c) 2023, Initialsoft, Inc.
  * All rights reserved.
  *
- * main : [description]
+ * niuke : [description]
  *
- * filename : main.cc
- * author   : hunt978(hunt978@initialsoft.com)
- * create   : 2022-12-12 04:49:10 UTC
- * modified : 2022-12-13 08:43:10 UTC
+ * filename : niuke.cc
+ * author   : tangmq(tangmq@initialsoft.com)
+ * create   : 2023-05-25 02:08:58 UTC
+ * modified : 2023-05-25 02:18:02 UTC
 \******************************************************************************/
 
 ////////////////////////////////////////////////////////////////////////////////
 // Headers
 //
-
-
-#include "interface.h"
-#include "algorithm.h"
 #include "niuke.h"
-#include <QtPlugin>
 
 ////////////////////////////////////////////////////////////////////////////////
 // Typedefs & Constants
@@ -31,24 +26,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Classes
 //
-
-
-int main(int argc, char* argv[])
+NIUKE::NIUKE()
 {
-	QApplication app(argc, argv);
-
-	Interface ui;
-	ui.show();
-
-	Algorithm a;
-
-	NIUKE b;
 	
-
-	return app.exec();
 }
+
+NIUKE::~NIUKE() {}
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
 //
+
+vector<int> NIUKE::printListFromTailToHead(ListNode* head) {
+    vector<int> rslt;
+    while (head)
+    {
+        rslt.insert(rslt.begin(), head->val);
+        head = head->next;
+    }
+    return rslt;
+}
+
+
 
 ////////////////////////////////// EOF /////////////////////////////////////////

@@ -8,7 +8,7 @@
  * filename : xml2ui.h
  * author   : tangmq(tangmq@initialsoft.com)
  * create   : 2023-01-10 02:37:14 UTC
- * modified : 2023-05-10 01:48:48 UTC
+ * modified : 2023-05-25 02:20:35 UTC
 \******************************************************************************/
 
 #ifndef __ITERFACE_H__
@@ -21,6 +21,7 @@
 
 #include <QApplication>
 #include <QBuffer>
+#include <QButtonGroup>
 #include <QComboBox>
 #include <QDateEdit>
 #include <QDebug>
@@ -47,7 +48,6 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QWindow>
-#include <QButtonGroup>
 #include <iostream>
 #include <map>
 
@@ -64,7 +64,7 @@
  */
 
 namespace Ui {
-	class navigation;
+class navigation;
 }
 
 class tableDeal : public QWidget
@@ -84,11 +84,11 @@ class tableDeal : public QWidget
 
 class navigation : public QWidget
 {
-	Q_OBJECT
+  Q_OBJECT
 
-public:
-	navigation(QWidget* parent = nullptr);
-	~navigation();
+ public:
+  navigation(QWidget* parent = nullptr);
+  ~navigation();
 };
 
 class Interface : public QWidget
@@ -157,17 +157,15 @@ class Interface : public QWidget
   bool eventFilter(QObject* obj, QEvent* event);
 
  private:
-  Ui::navigation* ui = nullptr;
+  Ui::navigation* ui     = nullptr;
   QButtonGroup* btnGroup = new QButtonGroup;
-  QWidget* home_win = new QWidget;
-  QWidget* work_win = new QWidget;
-  QWidget* data_win = new QWidget;
-  QWidget* setting_win = new QWidget;
-  QWidget* user_win = new QWidget;
-  QWidget* version_win = new QWidget;
+  QWidget* home_win      = new QWidget;
+  QWidget* work_win      = new QWidget;
+  QWidget* data_win      = new QWidget;
+  QWidget* setting_win   = new QWidget;
+  QWidget* user_win      = new QWidget;
+  QWidget* version_win   = new QWidget;
 };
-
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // Functions

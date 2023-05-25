@@ -7,7 +7,7 @@
  * filename : algorithm.h
  * author   : tangmq(megee@initialsoft.com)
  * create   : 2023-02-20 06:15:49 UTC
- * modified : 2023-05-11 09:15:27 UTC
+ * modified : 2023-05-25 02:21:07 UTC
 \******************************************************************************/
 
 #ifndef __ALGORITHM_H__
@@ -16,11 +16,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Headers
 //
+#include <ctime>
 #include <iostream>
 #include <string>
 #include <utility>
 #include <vector>
-#include <ctime>
 
 using namespace std;
 
@@ -38,38 +38,36 @@ class Algorithm
   Algorithm();
   ~Algorithm();
 
-public:
-	//二叉树
-	typedef struct _bitnode
-	{
-		int _data;
-		struct _bitnode* _lchild, * _rchild;
-	}_bitnode ,*_bittree;
+ public:
+  //二叉树
+  typedef struct _bitnode {
+    int _data;
+    struct _bitnode *_lchild, *_rchild;
+  } _bitnode, *_bittree;
 
-	_bittree* _tree = new _bittree;
+  _bittree* _tree = new _bittree;
 
-public:
-	//hash表
+ public:
+  // hash表
 #define HASHSIZE 12
 #define NULLKEY -1
-	 
-	typedef struct
-	{
-		int* _elem;
-		int _count;
-	}_hashtable;
 
-	_hashtable* _hash = new _hashtable;
+  typedef struct {
+    int* _elem;
+    int _count;
+  } _hashtable;
+
+  _hashtable* _hash = new _hashtable;
 
  public:
   static const int max_size = 100;
 
   clock_t start, end;
-  //start = clock();
-  //end = clock();
-  //cout << "time: " << (double)(end - start)/ CLOCKS_PER_SEC << endl;
+  // start = clock();
+  // end = clock();
+  // cout << "time: " << (double)(end - start)/ CLOCKS_PER_SEC << endl;
 
-/**************************数据结构*************************************/
+  /**************************数据结构*************************************/
   /**
    * 顺序表
    */
@@ -108,15 +106,15 @@ public:
 
   //中序遍历
   void inOrderTraverse(_bittree* t);
-  
+
   //后序遍历
   void postOrderTraverse(_bittree* t);
 
   //二叉排序树插入
-  bool insertBST(_bittree* t,int key);
-  
+  bool insertBST(_bittree* t, int key);
+
   //二叉排序树删除
-  bool deleteBST(_bittree *t,int key);
+  bool deleteBST(_bittree* t, int key);
 
   //二叉排序树删除节点
   bool _delete(_bittree* p);
@@ -127,15 +125,13 @@ public:
   //初始化hash表
   bool initHashTable(_hashtable* _hash);
 
-  //hash函数
+  // hash函数
   int hash(int key);
 
-  //hash表插值
+  // hash表插值
   void insertHash(_hashtable* _hash, int key);
 
-
-
-  /**************************算法************************************/
+  /**************************基础算法************************************/
   /**
    * 斐波那契数列迭代
    */
@@ -152,14 +148,14 @@ public:
   int sequebtialSearch(int* a, int n, int key);
 
   /**
-	* 二分查找
-	*/
+   * 二分查找
+   */
   void binarySearch();
 
   //二叉排序树查找
   bool searchBST(_bittree t, int key, _bittree f, _bittree* p);
 
-  //hsah表查找
+  // hsah表查找
   bool searchHash(_hashtable* _hash, int key, int* addr);
 
   //辗转相除法-求最大公约数
@@ -187,12 +183,12 @@ public:
   void quickSort();
 
   //快排递归
-  void QSort(int* a, int low,int high);
+  void QSort(int* a, int low, int high);
 
   //快排分割
   int partition(int* a, int low, int high);
 
-/*****************************功能***********************************/
+  /*****************************功能***********************************/
   /**
    * c++字符串切割
    */
