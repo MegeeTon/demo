@@ -37,13 +37,14 @@ public:
     ~NIUKE();
 
 public:
-    //二叉树
-    typedef struct _bitnode {
-        int _data;
-        struct _bitnode* _lchild, * _rchild;
-    } _bitnode, * _bittree;
 
-    _bittree* _tree = new _bittree;
+  struct TreeNode {
+      int val;
+      TreeNode *left;
+      TreeNode *right;
+      TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+  };
+ 
 
 public:
     // hash表
@@ -70,8 +71,8 @@ public:
 public:
     //输入一个链表的头节点，按链表从尾到头的顺序返回每个节点的值（用数组返回）。
     vector<int> printListFromTailToHead(ListNode* head);
-
-
+    //给定节点数为 n 的二叉树的前序遍历和中序遍历结果，请重建出该二叉树并返回它的头结点。
+    TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin);
 
 };
 ////////////////////////////////////////////////////////////////////////////////

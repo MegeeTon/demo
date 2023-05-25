@@ -46,6 +46,40 @@ vector<int> NIUKE::printListFromTailToHead(ListNode* head) {
     return rslt;
 }
 
+NIUKE::TreeNode* NIUKE::reConstructBinaryTree(vector<int> pre, vector<int> vin)
+{
+    int len = vin.size();
+
+    vector<int> pre_left, pre_right, vin_left, vin_right;
+
+    if (len == 0)
+        return nullptr;
+
+    TreeNode* head = new TreeNode(pre[0]);
+
+    int root;
+    for (int i = 0; i < len; i++)
+    {
+        if (vin[i] == pre[0])
+        {
+            root = i;
+            break;
+        }
+    }
+    for (int i = 0; i < root; i++)
+    {
+        pre_left.push_back(pre[i + 1]);
+        vin_left.push_back(vin[i]);
+    }
+    for (int i = root + 1; i < len; i++)
+    {
+        pre_right.push_back(pre[i]);
+        vin_right.push_back(vin[i]);
+    }
+    head->left = reConstructBinaryTree(pre_left, vin_left);
+    head->right = reConstructBinaryTree(pre_right, vin_right);
+    return head;
+}
 
 
 ////////////////////////////////// EOF /////////////////////////////////////////
