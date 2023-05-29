@@ -82,4 +82,58 @@ NIUKE::TreeNode* NIUKE::reConstructBinaryTree(vector<int> pre, vector<int> vin)
 }
 
 
+int NIUKE::duplicate(vector<int>& numbers) {
+    int length = numbers.size();
+    unordered_map<int, int> map;
+    for (int i = 0; i < length; i++)
+    {
+        if (map.count(numbers[i]))
+            return numbers[i];
+        else
+            map.insert(pair<int, int>(numbers[i], i));
+    }
+    return -1;
+}
+
+string NIUKE::replaceSpace(string s) {
+    // write code here
+    const char* tmp = "%20";
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (s[i] == ' ')
+        {
+            s.replace(i, 1, tmp);
+        }
+    }
+    return s;
+}
+
+void NIUKE::push(int node) {
+    stack1.push(node);
+}
+
+int NIUKE::pop() {
+    int rslt;
+    if (stack2.empty())
+    {
+        int size = stack1.size();
+        for (int i = 0; i < size; i++)
+        {
+            int tmp = stack1.top();
+            stack1.pop();
+            stack2.push(tmp);
+        }
+        rslt = stack2.top();
+        stack2.pop();
+    }
+    else {
+        rslt = stack2.top();
+        stack2.pop();
+    }
+    return rslt;
+}
+
+
+
+
 ////////////////////////////////// EOF /////////////////////////////////////////
