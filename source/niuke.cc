@@ -134,6 +134,105 @@ int NIUKE::pop() {
 }
 
 
+int NIUKE::minNumberInRotateArray(vector<int> rotateArray) {
+    int mid, low = 0;
+    int high = rotateArray.size() - 1;
+    while (low < high)
+    {
+        mid = (low + high) / 2;
+        if (rotateArray[mid] < rotateArray[high])
+            high = mid;
+        else if (rotateArray[mid] > rotateArray[high])
+            low = mid + 1;
+        else
+            high -= 1;
+    }
+    return rotateArray[low];
+}
 
+
+
+int  NIUKE::NumberOf1(int n) {
+    int rslt = 0;
+    if (n < 0)
+    {
+        n = 2147483648 + n;
+        rslt = 1;
+    }
+    while (n)
+    {
+        int tmp = n % 2;
+        n = n / 2;
+        if (tmp == 1)
+            rslt++;
+    }
+    return rslt;
+}
+
+
+vector<int> NIUKE::printNumbers(int n) {
+    // write code here
+    vector<int> rslt;
+    int size = pow(10, n);
+    for (int i = 1; i < size; i++)
+    {
+        rslt.push_back(i);
+    }
+    return rslt;
+}
+
+NIUKE::ListNode* NIUKE::deleteNode(ListNode* head, int val) {
+    // write code here
+    ListNode* tmp = head;
+    if (head->val == val)
+    {
+
+        if (head->next == nullptr)
+            head = nullptr;
+        else
+            head = head->next;
+    }
+    while (tmp->next != nullptr)
+    {
+        if (tmp->next->val == val)
+        {
+            if (tmp->next->next == nullptr)
+                tmp->next = nullptr;
+            else
+                tmp->next = tmp->next->next;
+        }
+        tmp = tmp->next;
+    }
+    return head;
+}
+
+NIUKE::ListNode* NIUKE::FindKthToTail(ListNode* pHead, int k) {
+    // write code here
+    ListNode* rslt = nullptr;
+    ListNode* tmp = pHead;
+    tmp = pHead;
+    int i = 0;
+
+    if (pHead == nullptr || k <= 0)
+        return rslt;
+
+    while (i < k - 1)
+    {
+        if (tmp->next == nullptr)
+            return rslt;
+        tmp = tmp->next;
+        i++;
+    }
+
+    rslt = pHead;
+    while (tmp->next != nullptr)
+    {
+        rslt = rslt->next;
+        tmp = tmp->next;
+    }
+
+    return rslt;
+
+}
 
 ////////////////////////////////// EOF /////////////////////////////////////////

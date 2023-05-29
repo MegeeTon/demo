@@ -31,7 +31,7 @@ Algorithm::Algorithm()
 {
   *_tree = NULL;
 
-  detToHex(1024);
+  binarySearch();
 }
 
 Algorithm::~Algorithm() {}
@@ -488,9 +488,9 @@ void Algorithm::binarySearch()
     //插值法，适用于分部均匀的数列
     //_mid = (_high - _low) * (_key - _a[_low]) / (_a[_high] - _a[_low]);
     if (_key < _a[_mid])
-      _high = _mid - 1;
+      _high = _mid-1;
     else if (_key > _a[_mid])
-      _low = _mid + 1;
+      _low = _mid+1;
     else {
       cout << _mid << endl;
       return;
