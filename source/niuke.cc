@@ -235,4 +235,65 @@ NIUKE::ListNode* NIUKE::FindKthToTail(ListNode* pHead, int k) {
 
 }
 
+NIUKE::ListNode* NIUKE::ReverseList(ListNode* pHead) {
+    if (pHead == nullptr)
+        return nullptr;
+
+    ListNode* first = pHead;
+    ListNode* rslt = pHead->next;
+    ListNode* tmp;
+
+    while (rslt != nullptr)
+    {
+        tmp = first;
+        first = rslt;
+        rslt = rslt->next;
+        first->next = tmp;
+    }
+    pHead->next = nullptr;
+    return first;
+}
+
+NIUKE::ListNode* NIUKE::Merge(ListNode* pHead1, ListNode* pHead2) {
+    auto* rslt = new ListNode(-1);
+    ListNode* tmp1 = rslt;
+    if (pHead1 == nullptr || pHead2 == nullptr)
+        return pHead1 == nullptr ? pHead2 : pHead1;
+    while (pHead1 != nullptr && pHead2 != nullptr)
+    {
+        if (pHead1->val <= pHead2->val)
+        {
+            tmp1->next = pHead1;
+            pHead1 = pHead1->next;
+        }
+        else {
+            tmp1->next = pHead2;
+            pHead2 = pHead2->next;
+        }
+        tmp1 = tmp1->next;
+    }
+    if (pHead1 == nullptr)
+        tmp1->next = pHead2;
+    else
+        tmp1->next = pHead1;
+    return rslt->next;
+}
+
+NIUKE::TreeNode* Mirror(NIUKE::TreeNode* pRoot) {
+    // write code here
+    if (!pRoot)
+        return pRoot;   
+
+    NIUKE::TreeNode* tmp;
+    if (pRoot)
+    {
+        tmp = pRoot->left;
+        pRoot->left = pRoot->right;
+        pRoot->right = tmp;
+        pRoot->left = Mirror(pRoot->left);
+        pRoot->right = Mirror(pRoot->right);
+    }
+    return pRoot;
+}
+
 ////////////////////////////////// EOF /////////////////////////////////////////

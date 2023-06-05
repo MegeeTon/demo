@@ -31,7 +31,7 @@ Algorithm::Algorithm()
 {
   *_tree = NULL;
 
-  binarySearch();
+  encryption();
 }
 
 Algorithm::~Algorithm() {}
@@ -769,6 +769,21 @@ void Algorithm::detToHex(int dec)
         }
     }
     cout << hex << endl;
+}
+
+void Algorithm::encryption()
+{
+    string txt;
+    cin >> txt;
+
+    if (!txt.empty())
+    {
+        for (int i = 0; i < txt.size(); i++)
+        {
+            txt[i] ^= 3;
+        }
+    }
+    cout << txt << endl;
 }
 
 ////////////////////////////////// EOF /////////////////////////////////////////

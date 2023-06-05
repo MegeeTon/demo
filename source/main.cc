@@ -37,13 +37,12 @@ int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
 
-	Interface ui;
-	ui.show();
-
 	Algorithm a;
 
 	NIUKE b;
-	
+
+	Interface ui;
+	ui.show();
 
 	return app.exec();
 }

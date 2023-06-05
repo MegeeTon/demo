@@ -113,6 +113,16 @@ public:
     //输入一个长度为 n 的链表，设链表中的元素的值为 ai ，返回该链表中倒数第k个节点。
     //如果该链表长度小于k，请返回一个长度为 0 的链表。
     ListNode* FindKthToTail(ListNode* pHead, int k);
+
+    //给定一个单链表的头结点pHead(该头节点是有值的，比如在下图，它的val是1)，长度为n
+    //，反转该链表后，返回新链表的表头。
+    ListNode* ReverseList(ListNode* pHead);
+
+    //输入两个递增的链表，单个链表的长度为n，合并这两个链表并使新链表中的节点仍然是递增排序的。
+    ListNode* Merge(ListNode* pHead1, ListNode* pHead2);
+
+    //操作给定的二叉树，将其变换为源二叉树的镜像。
+    TreeNode* Mirror(TreeNode* pRoot);
 };
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
