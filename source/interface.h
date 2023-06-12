@@ -64,107 +64,107 @@
  */
 
 namespace Ui {
-class navigation;
+	class navigation;
 }
 
 class tableDeal : public QWidget
 {
-  Q_OBJECT
+	Q_OBJECT
 
- public:
-  tableDeal(QWidget* parent = nullptr);
-  ~tableDeal();
+public:
+	tableDeal(QWidget* parent = nullptr);
+	~tableDeal();
 
- public:
-  QPushButton* buttonAdd         = new QPushButton("增");
-  QPushButton* buttonDelete      = new QPushButton("删");
-  QTableView* tableview          = new QTableView;
-  QStandardItemModel* tablemodel = new QStandardItemModel;
+public:
+	QPushButton* buttonAdd = new QPushButton("增");
+	QPushButton* buttonDelete = new QPushButton("删");
+	QTableView* tableview = new QTableView;
+	QStandardItemModel* tablemodel = new QStandardItemModel;
 };
 
 class navigation : public QWidget
 {
-  Q_OBJECT
+	Q_OBJECT
 
- public:
-  navigation(QWidget* parent = nullptr);
-  ~navigation();
+public:
+	navigation(QWidget* parent = nullptr);
+	~navigation();
 };
 
 class Interface : public QWidget
 {
-  Q_OBJECT
+	Q_OBJECT
 
- public:
-  Interface(QWidget* parent = nullptr);
-  ~Interface();
+public:
+	Interface(QWidget* parent = nullptr);
+	~Interface();
 
- public:
-  /**
-   * 通过preperty设定控件属性
-   */
-  void setproperty(QLineEdit* edit1);
+public:
+	/**
+	 * 通过preperty设定控件属性
+	 */
+	void setproperty(QLineEdit* edit1);
 
-  /**
-   * 数据范围
-   */
-  void valueRange();
+	/**
+	 * 数据范围
+	 */
+	void valueRange();
 
-  /**
-   * map转QMap
-   */
-  void mapToQmap();
+	/**
+	 * map转QMap
+	 */
+	void mapToQmap();
 
-  /**
-   * list数据快排
-   */
-  void listSort();
+	/**
+	 * list数据快排
+	 */
+	void listSort();
 
-  /**
-   * 控件切分
-   * @param root [description]
-   */
-  void widgetsplit(QHBoxLayout* root);
+	/**
+	 * 控件切分
+	 * @param root [description]
+	 */
+	void widgetsplit(QHBoxLayout* root);
 
-  /**
-   * 滚动区控件
-   * @return [description]
-   */
-  QWidget* scrollarea();
+	/**
+	 * 滚动区控件
+	 * @return [description]
+	 */
+	QWidget* scrollarea();
 
-  /**
-   * xmlToUi
-   * @return [description]
-   */
-  QWidget* genreate_widget();
+	/**
+	 * xmlToUi
+	 * @return [description]
+	 */
+	QWidget* genreate_widget();
 
-  /**
-   * 表格控件处理
-   */
-  QWidget* tableView(tableDeal* table);
+	/**
+	 * 表格控件处理
+	 */
+	QWidget* tableView(tableDeal* table);
 
-  /**
-   * 不选择警告
-   */
-  void tableSelection(tableDeal* table);
+	/**
+	 * 不选择警告
+	 */
+	void tableSelection(tableDeal* table);
 
-  /**
-   * 鼠标中键滑动事件过滤
-   * @param  obj   [description]
-   * @param  event [description]
-   * @return       [description]
-   */
-  bool eventFilter(QObject* obj, QEvent* event);
+	/**
+	 * 鼠标中键滑动事件过滤
+	 * @param  obj   [description]
+	 * @param  event [description]
+	 * @return       [description]
+	 */
+	bool eventFilter(QObject* obj, QEvent* event);
 
- private:
-  Ui::navigation* ui     = nullptr;
-  QButtonGroup* btnGroup = new QButtonGroup;
-  QWidget* home_win      = new QWidget;
-  QWidget* work_win      = new QWidget;
-  QWidget* data_win      = new QWidget;
-  QWidget* setting_win   = new QWidget;
-  QWidget* user_win      = new QWidget;
-  QWidget* version_win   = new QWidget;
+private:
+	Ui::navigation* ui = nullptr;
+	QButtonGroup* btnGroup = new QButtonGroup;
+	QWidget* home_win = new QWidget;
+	QWidget* work_win = new QWidget;
+	QWidget* data_win = new QWidget;
+	QWidget* setting_win = new QWidget;
+	QWidget* user_win = new QWidget;
+	QWidget* version_win = new QWidget;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
