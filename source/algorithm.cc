@@ -31,7 +31,7 @@ Algorithm::Algorithm()
 {
 	*_tree = NULL;
 
-	mapAndUnmap();
+
 }
 
 Algorithm::~Algorithm() {}

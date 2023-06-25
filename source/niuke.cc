@@ -40,8 +40,12 @@ NIUKE::~NIUKE() {}
 
 void NIUKE::test()
 {
-	string a = "0123456789";
-	cout << a[1] << endl;
+	int a[5] = { 1,5,3,2,5 };
+	set<int > s(a, a + 5);
+
+	for (set<int>::iterator it = s.begin(); it != s.end(); it++)
+		cout << *it << " ";
+
 
 }
 
@@ -431,16 +435,16 @@ int NIUKE::FindGreatestSumOfSubArray(vector<int> array) {
 	int size = array.size();
 	if (size == 1)
 		return array[0];
-	vector<int> max_array(size,0);
+	int max_num;
 	int rslt = array[0];
-	max_array[0] = array[0];
+	max_num = array[0];
 	for (int i = 1; i < size; i++)
 	{
-		if (max_array[i - 1] > 0)
-			max_array[i] = max_array[i - 1] + array[i];
+		if (max_num > 0)
+			max_num = max_num + array[i];
 		else
-			max_array[i] = array[i];
-		rslt = max(max_array[i], rslt);
+			max_num = array[i];
+		rslt = max(max_num, rslt);
 	}
 	return rslt;
 }
@@ -464,5 +468,148 @@ int NIUKE::findNthDigit(int n) {
 	long long rslt_weishu = (n - 1) % geshu;
 	return to_string(num)[rslt_weishu] - '0';
 }
+
+
+NIUKE::ListNode* NIUKE::FindFirstCommonNode(ListNode* pHead1, ListNode* pHead2) {
+	if (pHead1 == nullptr || pHead2 == nullptr)
+		return nullptr;
+
+
+	ListNode* tmp1 = pHead1;
+	ListNode* tmp2 = pHead2;
+	int size1 = 1;
+	int size2 = 1;
+
+	while (tmp1->next != nullptr)
+	{
+		size1++;
+		tmp1 = tmp1->next;
+	}
+
+	while (tmp2->next != nullptr)
+	{
+		size2++;
+		tmp2 = tmp2->next;
+	}
+
+	if (size1 >= size2)
+	{
+		int size_tmp = size1 - size2;
+		for (int i = 0; i < size_tmp; i++)
+			pHead1 = pHead1->next;
+	}
+	else {
+		int size_tmp = size2 - size1;
+		for (int i = 0; i < size_tmp; i++)
+			pHead2 = pHead2->next;
+	}
+
+	int size_tmp = size1 >= size2 ? size2 : size1;
+
+	for (int i = 0; i < size2; i++)
+	{
+		if (pHead1 == pHead2)
+			return pHead1;
+		else
+		{
+			pHead1 = pHead1->next;
+			pHead2 = pHead2->next;
+		}
+	}
+	return nullptr;
+}
+
+int NIUKE::GetNumberOfK(vector<int> data, int k) {
+	int low = 0;
+	int high = data.size();
+	int mid = 0;
+	int num = 0;
+
+	if (data.size() == 0)
+		return 0;
+
+	while (low <= high)
+	{
+		mid = (high + low) / 2;
+		if (data[mid] > k)
+			high = mid - 1;
+		else if (data[mid] < k)
+			low = mid + 1;
+		else {
+			num = 1;
+			int tmp = mid + 1;
+			while (data[tmp] == k)
+			{
+				num++;
+				tmp++;
+				if (tmp > data.size())
+					break;
+			}
+			tmp = mid - 1;
+			while (data[tmp] == k)
+			{
+				num++;
+				tmp--;
+				if (tmp < 0)
+					break;
+			}
+			break;
+		}
+	}
+	return num;
+}
+
+int NIUKE::TreeDepth(TreeNode* pRoot) {
+	if (pRoot == nullptr)
+		return 0;
+
+	int left = TreeDepth(pRoot->left);
+	int right = TreeDepth(pRoot->right);
+	return max(left, right) + 1;
+}
+
+bool NIUKE::IsContinuous(vector<int>& numbers) {
+	// write code here
+	int max, min;
+	int zero_num = 0;
+	set<int> s;
+
+	if (numbers.size() < 5)
+		return false;
+	for (int i = 0; i < 5; i++)
+	{
+		if (numbers[i] == 0)
+			zero_num++;
+		else
+			s.insert(numbers[i]);
+	}
+	if ((s.size() + zero_num == 5) && (*s.rbegin() - *s.begin() < 5))
+		return true;
+	return false;
+}
+
+int NIUKE::maxProfit(vector<int>& prices) {
+        // write code here
+        int size = prices.size();
+        if(size<=1)
+            return 0;
+             
+        vector<int> price_diff(size-1,0);
+        for(int i=0;i<size-1;i++)
+            price_diff[i] = prices[i+1]-prices[i];
+        int max_price=price_diff[0];
+        int rslt=price_diff[0];
+        for(int i=1;i<size-1;i++)
+        {
+            if(max_price>0)
+                max_price+=price_diff[i];
+            else
+                max_price=price_diff[i];
+            rslt=max(rslt,max_price);
+        }
+        if(rslt<0)
+            return 0;
+        return rslt;
+    }
 
 ////////////////////////////////// EOF /////////////////////////////////////////

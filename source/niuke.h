@@ -24,6 +24,7 @@
 #include <stack>
 #include <queue>
 #include <algorithm>
+#include <set>
 
 using namespace std;
 
@@ -162,7 +163,29 @@ public:
 	//数字以 0123456789101112131415... 的格式作为一个字符序列，请你输出第 n 位对应的数字。
 	int findNthDigit(int n);
 
-};
+	//输入两个无环的单向链表，找出它们的第一个公共结点，如果没有公共节点则返回空。
+	ListNode* FindFirstCommonNode(ListNode* pHead1, ListNode* pHead2);
+
+	//给定一个长度为 n 的非降序数组和一个非负数整数 k ，要求统计 k 在数组中出现的次数
+	int GetNumberOfK(vector<int> data, int k);
+
+	//输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，
+	//最长路径的长度为树的深度，根节点的深度视为 1 。
+	int TreeDepth(TreeNode* pRoot);
+
+	//现在有2副扑克牌，从扑克牌中随机五张扑克牌，我们需要来判断一下是不是顺子。大、小王为 0，0可以看作任意牌
+	bool IsContinuous(vector<int>& numbers);
+
+	//假设你有一个数组prices，长度为n，其中prices[i]是股票在第i天的价格，请根据这个价格数组，
+	//返回买卖股票能获得的最大收益,假设你有一个数组prices，长度为n，其中prices[i]是股票在第i天的价格，
+	//请根据这个价格数组，返回买卖股票能获得的最大收益
+	int maxProfit(vector<int>& prices);
+
+
+
+
+
+}; 
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
 //
